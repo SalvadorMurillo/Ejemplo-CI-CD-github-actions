@@ -1,0 +1,11 @@
+1.	Director: Crear Usuarios, Ver y Editar todos los datos.
+2.	Subdireccion:Crear Usuarios, Ver y Editar todos los datos. 
+3.	USAER:Crear y editar informes de Bab Ver todo y editar BAP.
+4.	Médico: Crear y editar informes y diagnosticos medicos Ver todo y editar lo médico
+5.	Trabajador Social:Crear y editar informes de BAP, Crear y editar Reportes de conducta y administrar actitudes positivas. Ver todo y editar reportes, actividades positivas, editar BAP, registro  de Alumnos, Editar psicopedagojico.
+6.	Prefecto: Ver todo.
+7.	Orientador: Crear y editar actitudes positivas. Ver todo y editar actitudes Editar psicopedagojico.
+8.	Docentes: Ver todo
+9.	Coordinación: Ver todo.
+
+

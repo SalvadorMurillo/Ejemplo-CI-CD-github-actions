@@ -1,0 +1,706 @@
+[
+  {
+    "schema_name": "public",
+    "table_name": "users",
+    "policy_name": "Users can view all users",
+    "command": "SELECT",
+    "using_expression": "(role() = 'authenticated'::text)",
+    "with_check_expression": null
+  },
+  {
+    "schema_name": "public",
+    "table_name": "users",
+    "policy_name": "Admins and directors can manage users",
+    "command": "ALL",
+    "using_expression": "(get_my_role() = ANY (ARRAY['admin'::text, 'director'::text, 'subdirector'::text]))",
+    "with_check_expression": null
+  },
+  {
+    "schema_name": "public",
+    "table_name": "students",
+    "policy_name": "Authenticated users can view students",
+    "command": "SELECT",
+    "using_expression": "(role() = 'authenticated'::text)",
+    "with_check_expression": null
+  },
+  {
+    "schema_name": "storage",
+    "table_name": "objects",
+    "policy_name": "Anyone can view profile images",
+    "command": "SELECT",
+    "using_expression": "(bucket_id = 'profile-images'::text)",
+    "with_check_expression": null
+  },
+  {
+    "schema_name": "public",
+    "table_name": "students",
+    "policy_name": "Authorized users can manage students",
+    "command": "ALL",
+    "using_expression": "(get_my_role() = ANY (ARRAY['admin'::text, 'director'::text, 'subdirector'::text, 'socialWorker'::text, 'prefect'::text, 'counselor'::text, 'usaer'::text]))",
+    "with_check_expression": null
+  },
+  {
+    "schema_name": "public",
+    "table_name": "conduct_reports",
+    "policy_name": "Authenticated users can view conduct reports",
+    "command": "SELECT",
+    "using_expression": "(role() = 'authenticated'::text)",
+    "with_check_expression": null
+  },
+  {
+    "schema_name": "public",
+    "table_name": "conduct_reports",
+    "policy_name": "Authorized users can manage conduct reports",
+    "command": "ALL",
+    "using_expression": "(get_my_role() = ANY (ARRAY['admin'::text, 'director'::text, 'subdirector'::text, 'socialWorker'::text, 'prefect'::text, 'counselor'::text, 'usaer'::text]))",
+    "with_check_expression": null
+  },
+  {
+    "schema_name": "public",
+    "table_name": "medical_records",
+    "policy_name": "Authenticated users can view medical records",
+    "command": "SELECT",
+    "using_expression": "(role() = 'authenticated'::text)",
+    "with_check_expression": null
+  },
+  {
+    "schema_name": "public",
+    "table_name": "medical_records",
+    "policy_name": "Authorized users can manage medical records",
+    "command": "ALL",
+    "using_expression": "(get_my_role() = ANY (ARRAY['admin'::text, 'director'::text, 'subdirector'::text, 'socialWorker'::text, 'medico'::text]))",
+    "with_check_expression": null
+  },
+  {
+    "schema_name": "public",
+    "table_name": "bap_records",
+    "policy_name": "Authenticated users can view BAP records",
+    "command": "SELECT",
+    "using_expression": "(role() = 'authenticated'::text)",
+    "with_check_expression": null
+  },
+  {
+    "schema_name": "public",
+    "table_name": "audit_logs",
+    "policy_name": "Admins can view audit logs",
+    "command": "SELECT",
+    "using_expression": "(get_my_role() = ANY (ARRAY['admin'::text, 'director'::text]))",
+    "with_check_expression": null
+  },
+  {
+    "schema_name": "public",
+    "table_name": "bap_records",
+    "policy_name": "Authorized users can manage BAP records",
+    "command": "ALL",
+    "using_expression": "(get_my_role() = ANY (ARRAY['admin'::text, 'director'::text, 'subdirector'::text, 'socialWorker'::text, 'counselor'::text, 'usaer'::text]))",
+    "with_check_expression": null
+  },
+  {
+    "schema_name": "public",
+    "table_name": "attitudes",
+    "policy_name": "Authenticated users can view attitudes",
+    "command": "SELECT",
+    "using_expression": "(role() = 'authenticated'::text)",
+    "with_check_expression": null
+  },
+  {
+    "schema_name": "public",
+    "table_name": "attitudes",
+    "policy_name": "Authorized users can manage attitudes",
+    "command": "ALL",
+    "using_expression": "(get_my_role() = ANY (ARRAY['admin'::text, 'director'::text, 'subdirector'::text, 'socialWorker'::text, 'prefect'::text, 'counselor'::text, 'usaer'::text]))",
+    "with_check_expression": null
+  },
+  {
+    "schema_name": "public",
+    "table_name": "final_reports",
+    "policy_name": "Authenticated users can view final reports",
+    "command": "SELECT",
+    "using_expression": "(role() = 'authenticated'::text)",
+    "with_check_expression": null
+  },
+  {
+    "schema_name": "public",
+    "table_name": "final_reports",
+    "policy_name": "Authorized users can manage final reports",
+    "command": "ALL",
+    "using_expression": "(get_my_role() = ANY (ARRAY['admin'::text, 'director'::text, 'subdirector'::text]))",
+    "with_check_expression": null
+  },
+  {
+    "schema_name": "public",
+    "table_name": "guardians",
+    "policy_name": "Authenticated users can view guardians",
+    "command": "SELECT",
+    "using_expression": "(role() = 'authenticated'::text)",
+    "with_check_expression": null
+  },
+  {
+    "schema_name": "public",
+    "table_name": "guardians",
+    "policy_name": "Authorized users can manage guardians",
+    "command": "ALL",
+    "using_expression": "(get_my_role() = ANY (ARRAY['admin'::text, 'director'::text, 'subdirector'::text, 'socialWorker'::text, 'prefect'::text, 'counselor'::text, 'usaer'::text]))",
+    "with_check_expression": null
+  },
+  {
+    "schema_name": "storage",
+    "table_name": "objects",
+    "policy_name": "Authenticated users can upload profile images",
+    "command": "INSERT",
+    "using_expression": null,
+    "with_check_expression": "((bucket_id = 'profile-images'::text) AND (role() = 'authenticated'::text))"
+  },
+  {
+    "schema_name": "storage",
+    "table_name": "objects",
+    "policy_name": "Users can update their own profile images",
+    "command": "UPDATE",
+    "using_expression": "((bucket_id = 'profile-images'::text) AND (uid() = owner))",
+    "with_check_expression": null
+  },
+  {
+    "schema_name": "storage",
+    "table_name": "objects",
+    "policy_name": "Authenticated users can view documents",
+    "command": "SELECT",
+    "using_expression": "((bucket_id = 'documents'::text) AND (role() = 'authenticated'::text))",
+    "with_check_expression": null
+  },
+  {
+    "schema_name": "storage",
+    "table_name": "objects",
+    "policy_name": "Authorized users can upload documents",
+    "command": "INSERT",
+    "using_expression": null,
+    "with_check_expression": "((bucket_id = 'documents'::text) AND (get_my_role() = ANY (ARRAY['admin'::text, 'director'::text, 'subdirector'::text, 'socialWorker'::text, 'prefect'::text, 'counselor'::text, 'usaer'::text, 'medico'::text])))"
+  },
+  {
+    "schema_name": "storage",
+    "table_name": "objects",
+    "policy_name": "Authenticated users can view signatures",
+    "command": "SELECT",
+    "using_expression": "((bucket_id = 'signatures'::text) AND (role() = 'authenticated'::text))",
+    "with_check_expression": null
+  },
+  {
+    "schema_name": "storage",
+    "table_name": "objects",
+    "policy_name": "Authorized users can upload signatures",
+    "command": "INSERT",
+    "using_expression": null,
+    "with_check_expression": "((bucket_id = 'signatures'::text) AND (get_my_role() = ANY (ARRAY['admin'::text, 'director'::text, 'subdirector'::text, 'socialWorker'::text, 'prefect'::text, 'counselor'::text, 'usaer'::text, 'medico'::text])))"
+  },
+  {
+    "schema_name": "storage",
+    "table_name": "objects",
+    "policy_name": "Authenticated users can view report attachments",
+    "command": "SELECT",
+    "using_expression": "((bucket_id = 'report-attachments'::text) AND (role() = 'authenticated'::text))",
+    "with_check_expression": null
+  },
+  {
+    "schema_name": "storage",
+    "table_name": "objects",
+    "policy_name": "Authorized users can upload report attachments",
+    "command": "INSERT",
+    "using_expression": null,
+    "with_check_expression": "((bucket_id = 'report-attachments'::text) AND (get_my_role() = ANY (ARRAY['admin'::text, 'director'::text, 'subdirector'::text, 'socialWorker'::text, 'prefect'::text, 'counselor'::text, 'usaer'::text, 'medico'::text])))"
+  },
+  {
+    "schema_name": "storage",
+    "table_name": "objects",
+    "policy_name": "Allow authenticated users to upload student profile images",
+    "command": "INSERT",
+    "using_expression": null,
+    "with_check_expression": "((role() = 'authenticated'::text) AND (bucket_id = 'student-profile-images'::text) AND ((storage.foldername(name))[1] = 'student-profiles'::text))"
+  },
+  {
+    "schema_name": "storage",
+    "table_name": "objects",
+    "policy_name": "Allow authenticated users to view student profile images",
+    "command": "SELECT",
+    "using_expression": "((role() = 'authenticated'::text) AND (bucket_id = 'student-profile-images'::text))",
+    "with_check_expression": null
+  },
+  {
+    "schema_name": "storage",
+    "table_name": "objects",
+    "policy_name": "Allow users to update student profile images",
+    "command": "UPDATE",
+    "using_expression": "((role() = 'authenticated'::text) AND (bucket_id = 'student-profile-images'::text) AND ((EXISTS ( SELECT 1\n   FROM users\n  WHERE ((users.id = uid()) AND ((users.role)::text = ANY ((ARRAY['admin'::character varying, 'principal'::character varying])::text[]))))) OR ((storage.foldername(name))[1] = 'student-profiles'::text)))",
+    "with_check_expression": null
+  },
+  {
+    "schema_name": "storage",
+    "table_name": "objects",
+    "policy_name": "Allow users to delete student profile images",
+    "command": "DELETE",
+    "using_expression": "((role() = 'authenticated'::text) AND (bucket_id = 'student-profile-images'::text) AND ((EXISTS ( SELECT 1\n   FROM users\n  WHERE ((users.id = uid()) AND ((users.role)::text = ANY ((ARRAY['admin'::character varying, 'principal'::character varying])::text[]))))) OR ((storage.foldername(name))[1] = 'student-profiles'::text)))",
+    "with_check_expression": null
+  },
+  {
+    "schema_name": "storage",
+    "table_name": "objects",
+    "policy_name": "Authenticated users can upload student profile images",
+    "command": "INSERT",
+    "using_expression": null,
+    "with_check_expression": "(bucket_id = 'student-profile-images'::text)"
+  },
+  {
+    "schema_name": "storage",
+    "table_name": "objects",
+    "policy_name": "Anyone can view student profile images",
+    "command": "SELECT",
+    "using_expression": "(bucket_id = 'student-profile-images'::text)",
+    "with_check_expression": null
+  },
+  {
+    "schema_name": "storage",
+    "table_name": "objects",
+    "policy_name": "Authenticated users can update student profile images",
+    "command": "UPDATE",
+    "using_expression": "(bucket_id = 'student-profile-images'::text)",
+    "with_check_expression": "(bucket_id = 'student-profile-images'::text)"
+  },
+  {
+    "schema_name": "storage",
+    "table_name": "objects",
+    "policy_name": "Authenticated users can delete student profile images",
+    "command": "DELETE",
+    "using_expression": "(bucket_id = 'student-profile-images'::text)",
+    "with_check_expression": null
+  },
+  {
+    "schema_name": "public",
+    "table_name": "users",
+    "policy_name": "users_select_policy",
+    "command": "SELECT",
+    "using_expression": "true",
+    "with_check_expression": null
+  },
+  {
+    "schema_name": "public",
+    "table_name": "parent_agreements",
+    "policy_name": "parent_agreements_update_policy",
+    "command": "UPDATE",
+    "using_expression": "(role() = 'authenticated'::text)",
+    "with_check_expression": "(role() = 'authenticated'::text)"
+  },
+  {
+    "schema_name": "public",
+    "table_name": "users",
+    "policy_name": "users_insert_policy",
+    "command": "INSERT",
+    "using_expression": null,
+    "with_check_expression": "(EXISTS ( SELECT 1\n   FROM users users_1\n  WHERE ((users_1.id = uid()) AND ((users_1.role)::text = ANY ((ARRAY['director'::character varying, 'subdirector'::character varying])::text[])) AND (users_1.is_active = true))))"
+  },
+  {
+    "schema_name": "public",
+    "table_name": "users",
+    "policy_name": "users_update_policy",
+    "command": "UPDATE",
+    "using_expression": "(EXISTS ( SELECT 1\n   FROM users users_1\n  WHERE ((users_1.id = uid()) AND ((users_1.role)::text = ANY ((ARRAY['director'::character varying, 'subdirector'::character varying])::text[])) AND (users_1.is_active = true))))",
+    "with_check_expression": "(EXISTS ( SELECT 1\n   FROM users users_1\n  WHERE ((users_1.id = uid()) AND ((users_1.role)::text = ANY ((ARRAY['director'::character varying, 'subdirector'::character varying])::text[])) AND (users_1.is_active = true))))"
+  },
+  {
+    "schema_name": "public",
+    "table_name": "users",
+    "policy_name": "users_delete_policy",
+    "command": "DELETE",
+    "using_expression": "(EXISTS ( SELECT 1\n   FROM users users_1\n  WHERE ((users_1.id = uid()) AND ((users_1.role)::text = ANY ((ARRAY['director'::character varying, 'subdirector'::character varying])::text[])) AND (users_1.is_active = true))))",
+    "with_check_expression": null
+  },
+  {
+    "schema_name": "public",
+    "table_name": "users",
+    "policy_name": "users_update_own_profile",
+    "command": "UPDATE",
+    "using_expression": "(id = uid())",
+    "with_check_expression": "(id = uid())"
+  },
+  {
+    "schema_name": "public",
+    "table_name": "students",
+    "policy_name": "students_select_policy",
+    "command": "SELECT",
+    "using_expression": "true",
+    "with_check_expression": null
+  },
+  {
+    "schema_name": "public",
+    "table_name": "final_reports",
+    "policy_name": "Authorized users can insert final reports",
+    "command": "INSERT",
+    "using_expression": null,
+    "with_check_expression": "(role() = 'authenticated'::text)"
+  },
+  {
+    "schema_name": "public",
+    "table_name": "final_reports",
+    "policy_name": "Authorized users can update final reports",
+    "command": "UPDATE",
+    "using_expression": "(role() = 'authenticated'::text)",
+    "with_check_expression": null
+  },
+  {
+    "schema_name": "public",
+    "table_name": "students",
+    "policy_name": "students_insert_policy",
+    "command": "INSERT",
+    "using_expression": null,
+    "with_check_expression": "(EXISTS ( SELECT 1\n   FROM users\n  WHERE ((users.id = uid()) AND ((users.role)::text = ANY ((ARRAY['director'::character varying, 'subdirector'::character varying, 'socialWorker'::character varying])::text[])) AND (users.is_active = true))))"
+  },
+  {
+    "schema_name": "public",
+    "table_name": "students",
+    "policy_name": "students_update_policy",
+    "command": "UPDATE",
+    "using_expression": "(EXISTS ( SELECT 1\n   FROM users\n  WHERE ((users.id = uid()) AND ((users.role)::text = ANY ((ARRAY['director'::character varying, 'subdirector'::character varying, 'usaer'::character varying, 'medico'::character varying, 'socialWorker'::character varying, 'counselor'::character varying])::text[])) AND (users.is_active = true))))",
+    "with_check_expression": null
+  },
+  {
+    "schema_name": "public",
+    "table_name": "students",
+    "policy_name": "students_delete_policy",
+    "command": "DELETE",
+    "using_expression": "(EXISTS ( SELECT 1\n   FROM users\n  WHERE ((users.id = uid()) AND ((users.role)::text = ANY ((ARRAY['director'::character varying, 'subdirector'::character varying])::text[])) AND (users.is_active = true))))",
+    "with_check_expression": null
+  },
+  {
+    "schema_name": "public",
+    "table_name": "bap_records",
+    "policy_name": "bap_records_select_policy",
+    "command": "SELECT",
+    "using_expression": "true",
+    "with_check_expression": null
+  },
+  {
+    "schema_name": "public",
+    "table_name": "bap_records",
+    "policy_name": "bap_records_insert_policy",
+    "command": "INSERT",
+    "using_expression": null,
+    "with_check_expression": "(EXISTS ( SELECT 1\n   FROM users\n  WHERE ((users.id = uid()) AND ((users.role)::text = ANY ((ARRAY['director'::character varying, 'subdirector'::character varying, 'usaer'::character varying, 'socialWorker'::character varying])::text[])) AND (users.is_active = true))))"
+  },
+  {
+    "schema_name": "public",
+    "table_name": "bap_records",
+    "policy_name": "bap_records_update_policy",
+    "command": "UPDATE",
+    "using_expression": "(EXISTS ( SELECT 1\n   FROM users\n  WHERE ((users.id = uid()) AND ((users.role)::text = ANY ((ARRAY['director'::character varying, 'subdirector'::character varying, 'usaer'::character varying, 'socialWorker'::character varying])::text[])) AND (users.is_active = true))))",
+    "with_check_expression": null
+  },
+  {
+    "schema_name": "public",
+    "table_name": "bap_records",
+    "policy_name": "bap_records_delete_policy",
+    "command": "DELETE",
+    "using_expression": "(EXISTS ( SELECT 1\n   FROM users\n  WHERE ((users.id = uid()) AND ((users.role)::text = ANY ((ARRAY['director'::character varying, 'subdirector'::character varying])::text[])) AND (users.is_active = true))))",
+    "with_check_expression": null
+  },
+  {
+    "schema_name": "public",
+    "table_name": "medical_records",
+    "policy_name": "medical_records_select_policy",
+    "command": "SELECT",
+    "using_expression": "true",
+    "with_check_expression": null
+  },
+  {
+    "schema_name": "public",
+    "table_name": "medical_records",
+    "policy_name": "medical_records_insert_policy",
+    "command": "INSERT",
+    "using_expression": null,
+    "with_check_expression": "(EXISTS ( SELECT 1\n   FROM users\n  WHERE ((users.id = uid()) AND ((users.role)::text = ANY ((ARRAY['director'::character varying, 'subdirector'::character varying, 'medico'::character varying])::text[])) AND (users.is_active = true))))"
+  },
+  {
+    "schema_name": "public",
+    "table_name": "medical_records",
+    "policy_name": "medical_records_update_policy",
+    "command": "UPDATE",
+    "using_expression": "(EXISTS ( SELECT 1\n   FROM users\n  WHERE ((users.id = uid()) AND ((users.role)::text = ANY ((ARRAY['director'::character varying, 'subdirector'::character varying, 'medico'::character varying])::text[])) AND (users.is_active = true))))",
+    "with_check_expression": null
+  },
+  {
+    "schema_name": "public",
+    "table_name": "medical_records",
+    "policy_name": "medical_records_delete_policy",
+    "command": "DELETE",
+    "using_expression": "(EXISTS ( SELECT 1\n   FROM users\n  WHERE ((users.id = uid()) AND ((users.role)::text = ANY ((ARRAY['director'::character varying, 'subdirector'::character varying])::text[])) AND (users.is_active = true))))",
+    "with_check_expression": null
+  },
+  {
+    "schema_name": "public",
+    "table_name": "conduct_reports",
+    "policy_name": "conduct_reports_select_policy",
+    "command": "SELECT",
+    "using_expression": "true",
+    "with_check_expression": null
+  },
+  {
+    "schema_name": "public",
+    "table_name": "conduct_reports",
+    "policy_name": "conduct_reports_insert_policy",
+    "command": "INSERT",
+    "using_expression": null,
+    "with_check_expression": "(EXISTS ( SELECT 1\n   FROM users\n  WHERE ((users.id = uid()) AND ((users.role)::text = ANY ((ARRAY['director'::character varying, 'subdirector'::character varying, 'socialWorker'::character varying])::text[])) AND (users.is_active = true))))"
+  },
+  {
+    "schema_name": "public",
+    "table_name": "conduct_reports",
+    "policy_name": "conduct_reports_update_policy",
+    "command": "UPDATE",
+    "using_expression": "(EXISTS ( SELECT 1\n   FROM users\n  WHERE ((users.id = uid()) AND ((users.role)::text = ANY ((ARRAY['director'::character varying, 'subdirector'::character varying, 'socialWorker'::character varying])::text[])) AND (users.is_active = true))))",
+    "with_check_expression": null
+  },
+  {
+    "schema_name": "public",
+    "table_name": "conduct_reports",
+    "policy_name": "conduct_reports_delete_policy",
+    "command": "DELETE",
+    "using_expression": "(EXISTS ( SELECT 1\n   FROM users\n  WHERE ((users.id = uid()) AND ((users.role)::text = ANY ((ARRAY['director'::character varying, 'subdirector'::character varying])::text[])) AND (users.is_active = true))))",
+    "with_check_expression": null
+  },
+  {
+    "schema_name": "public",
+    "table_name": "attitudes",
+    "policy_name": "attitudes_select_policy",
+    "command": "SELECT",
+    "using_expression": "true",
+    "with_check_expression": null
+  },
+  {
+    "schema_name": "public",
+    "table_name": "attitudes",
+    "policy_name": "attitudes_insert_policy",
+    "command": "INSERT",
+    "using_expression": null,
+    "with_check_expression": "(EXISTS ( SELECT 1\n   FROM users\n  WHERE ((users.id = uid()) AND ((users.role)::text = ANY ((ARRAY['director'::character varying, 'subdirector'::character varying, 'socialWorker'::character varying, 'counselor'::character varying])::text[])) AND (users.is_active = true))))"
+  },
+  {
+    "schema_name": "public",
+    "table_name": "attitudes",
+    "policy_name": "attitudes_update_policy",
+    "command": "UPDATE",
+    "using_expression": "(EXISTS ( SELECT 1\n   FROM users\n  WHERE ((users.id = uid()) AND ((users.role)::text = ANY ((ARRAY['director'::character varying, 'subdirector'::character varying, 'socialWorker'::character varying, 'counselor'::character varying])::text[])) AND (users.is_active = true))))",
+    "with_check_expression": null
+  },
+  {
+    "schema_name": "public",
+    "table_name": "attitudes",
+    "policy_name": "attitudes_delete_policy",
+    "command": "DELETE",
+    "using_expression": "(EXISTS ( SELECT 1\n   FROM users\n  WHERE ((users.id = uid()) AND ((users.role)::text = ANY ((ARRAY['director'::character varying, 'subdirector'::character varying])::text[])) AND (users.is_active = true))))",
+    "with_check_expression": null
+  },
+  {
+    "schema_name": "public",
+    "table_name": "guardians",
+    "policy_name": "guardians_select_policy",
+    "command": "SELECT",
+    "using_expression": "true",
+    "with_check_expression": null
+  },
+  {
+    "schema_name": "public",
+    "table_name": "guardians",
+    "policy_name": "guardians_insert_policy",
+    "command": "INSERT",
+    "using_expression": null,
+    "with_check_expression": "(EXISTS ( SELECT 1\n   FROM users\n  WHERE ((users.id = uid()) AND ((users.role)::text = ANY ((ARRAY['director'::character varying, 'subdirector'::character varying, 'socialWorker'::character varying])::text[])) AND (users.is_active = true))))"
+  },
+  {
+    "schema_name": "public",
+    "table_name": "guardians",
+    "policy_name": "guardians_update_policy",
+    "command": "UPDATE",
+    "using_expression": "(EXISTS ( SELECT 1\n   FROM users\n  WHERE ((users.id = uid()) AND ((users.role)::text = ANY ((ARRAY['director'::character varying, 'subdirector'::character varying, 'socialWorker'::character varying])::text[])) AND (users.is_active = true))))",
+    "with_check_expression": null
+  },
+  {
+    "schema_name": "public",
+    "table_name": "guardians",
+    "policy_name": "guardians_delete_policy",
+    "command": "DELETE",
+    "using_expression": "(EXISTS ( SELECT 1\n   FROM users\n  WHERE ((users.id = uid()) AND ((users.role)::text = ANY ((ARRAY['director'::character varying, 'subdirector'::character varying])::text[])) AND (users.is_active = true))))",
+    "with_check_expression": null
+  },
+  {
+    "schema_name": "public",
+    "table_name": "final_reports",
+    "policy_name": "final_reports_select_policy",
+    "command": "SELECT",
+    "using_expression": "true",
+    "with_check_expression": null
+  },
+  {
+    "schema_name": "public",
+    "table_name": "final_reports",
+    "policy_name": "final_reports_insert_policy",
+    "command": "INSERT",
+    "using_expression": null,
+    "with_check_expression": "(EXISTS ( SELECT 1\n   FROM users\n  WHERE ((users.id = uid()) AND ((users.role)::text = ANY ((ARRAY['director'::character varying, 'subdirector'::character varying])::text[])) AND (users.is_active = true))))"
+  },
+  {
+    "schema_name": "public",
+    "table_name": "final_reports",
+    "policy_name": "final_reports_update_policy",
+    "command": "UPDATE",
+    "using_expression": "(EXISTS ( SELECT 1\n   FROM users\n  WHERE ((users.id = uid()) AND ((users.role)::text = ANY ((ARRAY['director'::character varying, 'subdirector'::character varying])::text[])) AND (users.is_active = true))))",
+    "with_check_expression": null
+  },
+  {
+    "schema_name": "public",
+    "table_name": "final_reports",
+    "policy_name": "final_reports_delete_policy",
+    "command": "DELETE",
+    "using_expression": "(EXISTS ( SELECT 1\n   FROM users\n  WHERE ((users.id = uid()) AND ((users.role)::text = ANY ((ARRAY['director'::character varying, 'subdirector'::character varying])::text[])) AND (users.is_active = true))))",
+    "with_check_expression": null
+  },
+  {
+    "schema_name": "public",
+    "table_name": "audit_logs",
+    "policy_name": "audit_logs_select_policy",
+    "command": "SELECT",
+    "using_expression": "(EXISTS ( SELECT 1\n   FROM users\n  WHERE ((users.id = uid()) AND ((users.role)::text = ANY ((ARRAY['admin'::character varying, 'director'::character varying, 'subdirector'::character varying])::text[])) AND (users.is_active = true))))",
+    "with_check_expression": null
+  },
+  {
+    "schema_name": "public",
+    "table_name": "audit_logs",
+    "policy_name": "audit_logs_insert_policy",
+    "command": "INSERT",
+    "using_expression": null,
+    "with_check_expression": "true"
+  },
+  {
+    "schema_name": "public",
+    "table_name": "audit_logs",
+    "policy_name": "audit_logs_update_policy",
+    "command": "UPDATE",
+    "using_expression": "false",
+    "with_check_expression": "false"
+  },
+  {
+    "schema_name": "public",
+    "table_name": "audit_logs",
+    "policy_name": "audit_logs_delete_policy",
+    "command": "DELETE",
+    "using_expression": "(EXISTS ( SELECT 1\n   FROM users\n  WHERE ((users.id = uid()) AND ((users.role)::text = 'admin'::text) AND (users.is_active = true))))",
+    "with_check_expression": null
+  },
+  {
+    "schema_name": "public",
+    "table_name": "parent_agreements",
+    "policy_name": "parent_agreements_select_policy",
+    "command": "SELECT",
+    "using_expression": "(role() = 'authenticated'::text)",
+    "with_check_expression": null
+  },
+  {
+    "schema_name": "public",
+    "table_name": "parent_agreements",
+    "policy_name": "parent_agreements_insert_policy",
+    "command": "INSERT",
+    "using_expression": null,
+    "with_check_expression": "(role() = 'authenticated'::text)"
+  },
+  {
+    "schema_name": "public",
+    "table_name": "final_reports",
+    "policy_name": "Admins can delete final reports",
+    "command": "DELETE",
+    "using_expression": "(role() = 'authenticated'::text)",
+    "with_check_expression": null
+  },
+  {
+    "schema_name": "public",
+    "table_name": "parent_agreements",
+    "policy_name": "parent_agreements_delete_policy",
+    "command": "DELETE",
+    "using_expression": "(EXISTS ( SELECT 1\n   FROM users\n  WHERE ((users.id = uid()) AND ((users.role)::text = ANY ((ARRAY['admin'::character varying, 'director'::character varying])::text[])))))",
+    "with_check_expression": null
+  },
+  {
+    "schema_name": "public",
+    "table_name": "medical_records",
+    "policy_name": "Usuarios pueden leer expedientes médicos",
+    "command": "SELECT",
+    "using_expression": "true",
+    "with_check_expression": null
+  },
+  {
+    "schema_name": "public",
+    "table_name": "medical_records",
+    "policy_name": "Roles autorizados pueden crear expedientes",
+    "command": "INSERT",
+    "using_expression": null,
+    "with_check_expression": "(EXISTS ( SELECT 1\n   FROM users\n  WHERE ((users.id = uid()) AND ((users.role)::text = ANY ((ARRAY['admin'::character varying, 'director'::character varying, 'subdirector'::character varying, 'socialWorker'::character varying, 'medico'::character varying])::text[])))))"
+  },
+  {
+    "schema_name": "public",
+    "table_name": "medical_records",
+    "policy_name": "Roles autorizados pueden actualizar expedientes",
+    "command": "UPDATE",
+    "using_expression": "(EXISTS ( SELECT 1\n   FROM users\n  WHERE ((users.id = uid()) AND ((users.role)::text = ANY ((ARRAY['admin'::character varying, 'director'::character varying, 'subdirector'::character varying, 'socialWorker'::character varying, 'medico'::character varying])::text[])))))",
+    "with_check_expression": null
+  },
+  {
+    "schema_name": "public",
+    "table_name": "medical_records",
+    "policy_name": "Solo admin puede eliminar expedientes",
+    "command": "DELETE",
+    "using_expression": "(EXISTS ( SELECT 1\n   FROM users\n  WHERE ((users.id = uid()) AND ((users.role)::text = 'admin'::text))))",
+    "with_check_expression": null
+  },
+  {
+    "schema_name": "public",
+    "table_name": "final_reports",
+    "policy_name": "Users can read final reports",
+    "command": "SELECT",
+    "using_expression": "(role() = 'authenticated'::text)",
+    "with_check_expression": null
+  },
+  {
+    "schema_name": "storage",
+    "table_name": "objects",
+    "policy_name": "Authenticated users can upload final reports",
+    "command": "INSERT",
+    "using_expression": null,
+    "with_check_expression": "((bucket_id = 'final-reports'::text) AND (role() = 'authenticated'::text))"
+  },
+  {
+    "schema_name": "storage",
+    "table_name": "objects",
+    "policy_name": "final_reports_insert",
+    "command": "INSERT",
+    "using_expression": null,
+    "with_check_expression": "(bucket_id = 'final-reports'::text)"
+  },
+  {
+    "schema_name": "storage",
+    "table_name": "objects",
+    "policy_name": "final_reports_select",
+    "command": "SELECT",
+    "using_expression": "(bucket_id = 'final-reports'::text)",
+    "with_check_expression": null
+  },
+  {
+    "schema_name": "storage",
+    "table_name": "objects",
+    "policy_name": "final_reports_update",
+    "command": "UPDATE",
+    "using_expression": "(bucket_id = 'final-reports'::text)",
+    "with_check_expression": "(bucket_id = 'final-reports'::text)"
+  },
+  {
+    "schema_name": "storage",
+    "table_name": "objects",
+    "policy_name": "final_reports_delete",
+    "command": "DELETE",
+    "using_expression": "(bucket_id = 'final-reports'::text)",
+    "with_check_expression": null
+  }
+]

@@ -1,0 +1,53 @@
+# 1. Nombre de tu "receta" (aparecerá en la pestaña Actions)
+name: Desplegar V1 y V2
+
+# 2. CUÁNDO se va a ejecutar esta receta
+on:
+  push:
+    # Solo se ejecutará cuando haya un 'push' a estas ramas:
+    branches:
+      - main      # Para la Versión 1
+      - develop   # Para la Versión 2
+
+# 3. QUÉ va a hacer
+jobs:
+  # Nombramos la tarea. Puedes ponerle "desplegar" o lo que quieras.
+  construir-y-desplegar:
+    
+    # 4. En qué tipo de computadora se ejecutará (usa esta siempre)
+    runs-on: ubuntu-latest
+
+    # 5. La lista de pasos a seguir, en orden
+    steps:
+      
+      # Paso 1: Básico. Baja tu código del repositorio a la máquina virtual.
+      - name: 1. Bajar el código
+        uses: actions/checkout@v4
+
+      # --- Aquí empieza la magia para diferenciar versiones ---
+
+      # Paso 2.A: Solo se ejecuta si la rama es 'main'
+      - name: 2.A. Desplegar Versión 1 (Producción)
+        # Esta línea 'if' es la clave de todo
+        if: github.ref_name == 'main'
+        run: |
+          echo "Detecté la rama 'main'. ¡Desplegando la V1 (Producción)! 🚀"
+          # 
+          # AQUÍ PONES TUS COMANDOS REALES PARA LA V1
+          # Ejemplo:
+          # npm install
+          # npm run build:prod
+          # scp -r ./dist usuario@tu-servidor-v1.com:/var/www/html
+
+      # Paso 2.B: Solo se ejecuta si la rama es 'develop'
+      - name: 2.B. Desplegar Versión 2 (Desarrollo)
+        # Esta línea 'if' es la clave de todo
+        if: github.ref_name == 'develop'
+        run: |
+          echo "Detecté la rama 'develop'. ¡Desplegando la V2 (Desarrollo)! 🧪"
+          # 
+          # AQUÍ PONES TUS COMANDOS REALES PARA LA V2
+          # Ejemplo:
+          # npm install
+          # npm run build:dev
+          # scp -r ./dist usuario@tu-servidor-v2.com:/var/www/html
